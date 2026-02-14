@@ -1,0 +1,244 @@
+<% layout("/layout/boilerplate") %>
+
+<br>
+
+<div class="row justify-content-center">
+  <div class="col-md-8">
+
+    <h3 class="mb-4 text-center">LISTING DETAILS</h3>
+
+    <!-- IMAGE CARD -->
+    <div class="card text-bg-dark mb-4 mx-auto listing-card" style="max-width: 600px;">
+      <img src="<%= listing.image?.url || 'https://via.placeholder.com/600x400' %>" class="card-img" alt="listing_image">
+      <div class="card-img-overlay">
+        <h5 class="card-title"><%= listing.title %></h5>
+        <p class="card-text"><%= listing.description %></p>
+      </div>
+    </div>
+
+    <!-- DETAILS -->
+    <ul class="list-group mb-3">
+      <li class="list-group-item"><strong>Title:</strong> <%= listing.title %></li>
+      <li class="list-group-item"><strong>Description:</strong> <%= listing.description %></li>
+      <li class="list-group-item"><strong>Price:</strong> ₹<%= listing.price.toLocaleString("en-IN") %></li>
+      <li class="list-group-item"><strong>Location:</strong> <%= listing.location %></li>
+      <li class="list-group-item"><strong>Country:</strong> <%= listing.country %></li>
+    </ul>
+
+    <!-- EDIT DELETE -->
+    <div class="d-flex justify-content-center gap-3 mb-4">
+      <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark">Edit</a>
+      <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+        <button class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+
+    <!-- FAVORITES -->
+    <% if(currentUser){ %>
+      <div class="text-center mb-4">
+        <% if(currentUser.favorites && currentUser.favorites.includes(listing._id)){ %>
+          <form action="/listings/<%= listing._id %>/unfavorite" method="POST">
+            <button class="btn btn-warning">★ Remove from Favorites</button>
+          </form>
+        <% } else { %>
+          <form action="/listings/<%= listing._id %>/favorite" method="POST">
+            <button class="btn btn-outline-warning">☆ Add to Favorites</button>
+          </form>
+        <% } %>
+      </div>
+    <% } %>
+    <hr>
+<hr>
+<h4>🌤 Current Weather</h4>
+<div id="weatherBox">Loading weather...</div>
+
+<script>
+async function loadWeather() {
+  try {
+    const res = await fetch("/weather?lat=15.2993&lon=74.1240");
+    const data = await res.json();
+    const w = data.data[0];
+
+    document.getElementById("weatherBox").innerHTML = `
+      🌡 Temp: <b>${w.temp}°C</b><br>
+      🌥 Condition: <b>${w.weather.description}</b><br>
+      💨 Wind: <b>${w.wind_spd} m/s</b>
+    `;
+  } catch {
+    document.getElementById("weatherBox").innerText = "Weather not available";
+  }
+}
+
+loadWeather();
+</script>
+
+
+
+
+    <hr>
+
+    <!-- LIVE CHAT -->
+    <h4>Live Chat</h4>
+
+    <div id="chatBox" style="height:200px; overflow-y:auto; border:1px solid #ccc; padding:10px; margin-bottom:10px;"></div>
+
+    <div class="input-group mb-4">
+      <input type="text" id="msgInput" class="form-control" placeholder="Type message...">
+      <button onclick="sendMessage()" class="btn btn-dark">Send</button>
+    </div>
+
+    <hr>
+
+    <!-- REVIEW FORM -->
+    <h4>Leave a Review</h4>
+    <form action="/listings/<%= listing._id %>/reviews" method="POST" class="mb-4">
+      <label class="form-label">Rating</label>
+      <input type="range" min="1" max="5" name="review[rating]" class="form-range">
+
+      <label class="form-label mt-2">Comments</label>
+      <textarea name="review[comment]" class="form-control" required></textarea>
+
+      <button class="btn btn-outline-dark mt-3">Submit</button>
+    </form>
+
+    <hr>
+
+    <!-- ALL REVIEWS -->
+    <h5>All Reviews</h5>
+    <div class="row">
+      <% for(let review of listing.reviews){ %>
+        <div class="card col-5 ms-3 mb-3">
+          <div class="card-body">
+            <h6 class="card-title">Anonymous</h6>
+
+            <p>
+              Rating:
+              <span class="text-warning fs-5">
+                <% for(let i = 1; i <= 5; i++) { %>
+                  <% if(i <= review.rating) { %> ★ <% } else { %> ☆ <% } %>
+                <% } %>
+              </span>
+            </p>
+
+            <p class="card-text"><%= review.comment %></p>
+            
+            
+
+            <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+              <button class="btn btn-sm btn-dark">Delete</button>
+              
+            
+            </form>
+<br>
+          </div>
+        </div>
+      <% } %>
+    </div>
+    
+
+    <hr>
+
+    <!-- BOOKING -->
+    <h4>Book This Listing</h4>
+    <% if(currentUser){ %>
+      <form action="/listings/<%= listing._id %>/bookings" method="POST" class="mb-5">
+        <div class="mb-3">
+          <label class="form-label">Check-In Date</label>
+          <input type="date" name="booking[checkIn]" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Check-Out Date</label>
+          <input type="date" name="booking[checkOut]" class="form-control" required>
+        </div>
+        <button class="btn btn-outline-primary">Book Now</button>
+      </form>
+    <% } else { %>
+      <p>Please <a href="/login">login</a> to book this listing.</p>
+    <% } %>
+
+  </div>
+</div>
+<!-- 🌍 Explore Nearby Destinations -->
+<div class="container my-5">
+  <h4 class="mb-4 fw-semibold">Explore other options in and around Arpora</h4>
+
+  <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-3 explore-links">
+
+    <div class="col"><a href="/listings?location=Bengaluru">Bengaluru<br><span>Holiday rentals</span></a></div>
+    <div class="col"><a href="/listings?location=Mumbai">Mumbai<br><span>Holiday rentals</span></a></div>
+    <div class="col"><a href="/listings?location=South Goa">South Goa<br><span>Holiday rentals</span></a></div>
+    <div class="col"><a href="/listings?location=Pune City">Pune City<br><span>Holiday rentals</span></a></div>
+    <div class="col"><a href="/listings?location=Bangalore Rural">Bangalore Rural<br><span>Holiday rentals</span></a></div>
+    <div class="col"><a href="/listings?location=Lonavala">Lonavala<br><span>Holiday rentals</span></a></div>
+    <div class="col"><a href="/listings?location=Raigad">Raigad<br><span>Holiday rentals</span></a></div>
+    <div class="col"><a href="/listings?location=Mumbai (Suburban)">Mumbai (Suburban)<br><span>Holiday rentals</span></a></div>
+    <div class="col"><a href="/listings?location=Wayanad">Wayanad<br><span>Holiday rentals</span></a></div>
+
+  </div>
+
+  <hr class="my-5">
+
+  <h5 class="fw-semibold mb-3">Other types of stays on Airbnb</h5>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 explore-links">
+
+    <div class="col"><a href="/listings?location=North Goa">North Goa holiday rentals</a></div>
+    <div class="col"><a href="/listings?location=North Goa">North Goa monthly stays</a></div>
+    <div class="col"><a href="/listings?location=North Goa&pool=true">Holiday rentals with a pool in North Goa</a></div>
+    <div class="col"><a href="/listings?location=Goa&pool=true">Holiday rentals with a pool in Goa</a></div>
+    <div class="col"><a href="/listings?location=India&pool=true">Holiday rentals with a pool in India</a></div>
+
+  </div>
+</div>
+
+
+<!-- SOCKET.IO SCRIPT (ONLY ONCE) -->
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+  const listingId = "<%= listing._id %>";
+
+  socket.emit("joinRoom", listingId);
+
+  function sendMessage() {
+    const input = document.getElementById("msgInput");
+    const message = input.value.trim();
+    if (!message) return;
+
+    socket.emit("sendMessage", {
+      listingId: listingId,
+      message: message,
+      user: "User"
+    });
+
+    input.value = "";
+  }
+
+  socket.on("receiveMessage", (data) => {
+    const chatBox = document.getElementById("chatBox");
+
+    const msgDiv = document.createElement("div");
+    msgDiv.innerHTML = `<b>${data.user}:</b> ${data.message}`;
+    msgDiv.classList.add("mb-2");
+
+    if (data.user === "AI Assistant") {
+      msgDiv.style.color = "purple";
+    }
+
+    chatBox.appendChild(msgDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  });
+</script>
+<script>
+  const map = L.map('map').setView([20.5937, 78.9629], 5); // India default
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  L.marker([20.5937, 78.9629])
+    .addTo(map)
+    .bindPopup("Listing Location")
+    .openPopup();
+</script>
+

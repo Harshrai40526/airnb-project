@@ -1,0 +1,200 @@
+<% layout("/layout/boilerplate") %>
+
+<div class="d-flex justify-content-end align-items-center mb-3">
+  <span class="me-2 fw-semibold">Display total before taxes</span>
+
+  <div class="form-check form-switch">
+    <input class="form-check-input" type="checkbox" id="taxToggle">
+  </div>
+</div>
+
+
+<!--<h3 class="mb-4">All Listings</h3>
+<!-- 🔎 Airbnb Style Filter Bar START -->
+<div class="container my-4">
+  <div class="card p-3 shadow-sm filter-panel">
+    <div class="row g-3 align-items-center">
+
+      <div class="col-auto">
+        <label class="form-label mb-0">Type</label>
+        <select class="form-select form-select-sm">
+          <option>Any type</option>
+          <option>Entire home</option>
+          <option>Room</option>
+        </select>
+      </div>
+
+      <div class="col-auto">
+        <label class="form-label mb-0">Price</label>
+        <div class="d-flex gap-2">
+          <input type="number" class="form-control form-control-sm" placeholder="Min ₹" style="width:80px;">
+          <input type="number" class="form-control form-control-sm" placeholder="Max ₹" style="width:80px;">
+        </div>
+      </div>
+
+      <div class="col-auto">
+        <label class="form-label mb-0">Bedrooms</label>
+        <input type="number" class="form-control form-control-sm" placeholder="Any" style="width:60px;">
+      </div>
+
+      <div class="col-auto">
+        <label class="form-label mb-0">Beds</label>
+        <input type="number" class="form-control form-control-sm" placeholder="Any" style="width:60px;">
+      </div>
+
+      <div class="col-auto">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="wifi">
+          <label class="form-check-label" for="wifi">
+            <i class="fa-solid fa-wifi"></i> Wifi
+          </label>
+        </div>
+      </div>
+
+      <div class="col-auto">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="pool">
+          <label class="form-check-label" for="pool">
+            <i class="fa-solid fa-person-swimming"></i> Pool
+          </label>
+        </div>
+      </div>
+
+      <div class="col-auto">
+        <button class="btn btn-danger">
+          <i class="fa-solid fa-magnifying-glass"></i> Search
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- 🔎 Airbnb Style Filter Bar END -->
+
+
+<!-- 🔍 SEARCH & FILTER FORM -->
+  
+<div class="filters-wrapper">
+  <div class="filters">
+
+    <a href="/listings" class="filter-item">
+      <i class="fa-solid fa-fire"></i>
+      <span>All</span>
+    </a>
+
+    <a href="/listings?category=mountain" class="filter-item">
+      <i class="fa-solid fa-mountain"></i>
+      <span>Mountain</span>
+    </a>
+
+    <a href="/listings?category=beach" class="filter-item">
+      <i class="fa-solid fa-umbrella-beach"></i>
+      <span>Beach</span>
+    </a>
+
+    <a href="/listings?category=city" class="filter-item">
+      <i class="fa-solid fa-city"></i>
+      <span>City</span>
+    </a>
+
+    <a href="/listings?category=camping" class="filter-item">
+      <i class="fa-solid fa-campground"></i>
+      <span>Camping</span>
+    </a>
+
+    <a href="/listings?category=cabin" class="filter-item">
+      <i class="fa-solid fa-house-chimney"></i>
+      <span>Cabins</span>
+    </a>
+<a href="/listings?category=pool" class="filter-item d-flex flex-column align-items-center text-decoration-none text-dark">
+    <i class="fa-solid fa-water-ladder fa-2x mb-1"></i>
+    <span>Pool</span>
+  </a>
+<a href="/listings?category=room" class="filter-item d-flex flex-column align-items-center text-decoration-none text-dark">
+    <i class="fa-solid fa-bed fa-2x mb-1"></i>
+    <span>Room</span>
+  </a>
+  <a href="/listings?category=dome" class="filter-item d-flex flex-column align-items-center text-decoration-none text-dark">
+    <i class="fa-solid fa-archway fa-2x mb-1"></i>
+    <span>Dome</span>
+  </a>
+   <a href="/listings?category=boat" class="filter-item d-flex flex-column align-items-center text-decoration-none text-dark">
+    <i class="fa-solid fa-ship fa-2x mb-1"></i>
+    <span>Boat</span>
+  </a>
+  <a href="/listings?category=castle" class="filter-item d-flex flex-column align-items-center text-decoration-none text-dark">
+    <i class="fa-solid fa-chess-rook fa-2x mb-1"></i>
+    <span>Castles</span>
+  </a>
+  
+   </div>
+</div>
+<br> <br>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+
+  <% for (let listing of alllistings) { %>
+
+    <div class="col">
+      <div class="card listing-card h-100">
+        <img 
+          src="<%= listing.image?.url || listing.image || 'https://via.placeholder.com/400x300' %>"
+          class="card-img-top"
+          alt="listing_image"
+          style="height: 20rem; object-fit: cover;"
+        />
+
+        <div class="card-body">
+          <h5 class="card-title"><%= listing.title %></h5>
+
+          <p class="card-text">
+            ₹
+            <%= listing.price != null
+                ? listing.price.toLocaleString("en-IN")
+                : "N/A" %>
+            / night
+          </p>
+
+          <a href="/listings/<%= listing._id %>" class="btn btn-primary">
+            View Listing
+          </a>
+        </div>
+      </div>
+    </div>
+
+<!-- 🌍 Explore Nearby Destinations -->
+
+  <% } %>
+</div>
+<!-- 🌍 Explore Nearby Destinations -->
+<div class="container my-5">
+  <h4 class="mb-4 fw-semibold">Explore other options in and around Arpora</h4>
+
+  <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-3 explore-links">
+
+    <div class="col"><a href="/listings?location=Bengaluru">Bengaluru<br><span>Holiday rentals</span></a></div>
+    <div class="col"><a href="/listings?location=Mumbai">Mumbai<br><span>Holiday rentals</span></a></div>
+    <div class="col"><a href="/listings?location=South Goa">South Goa<br><span>Holiday rentals</span></a></div>
+    <div class="col"><a href="/listings?location=Pune City">Pune City<br><span>Holiday rentals</span></a></div>
+    <div class="col"><a href="/listings?location=Bangalore Rural">Bangalore Rural<br><span>Holiday rentals</span></a></div>
+    <div class="col"><a href="/listings?location=Lonavala">Lonavala<br><span>Holiday rentals</span></a></div>
+    <div class="col"><a href="/listings?location=Raigad">Raigad<br><span>Holiday rentals</span></a></div>
+    <div class="col"><a href="/listings?location=Mumbai (Suburban)">Mumbai (Suburban)<br><span>Holiday rentals</span></a></div>
+    <div class="col"><a href="/listings?location=Wayanad">Wayanad<br><span>Holiday rentals</span></a></div>
+
+  </div>
+
+  <hr class="my-5">
+
+  <h5 class="fw-semibold mb-3">Other types of stays on Airbnb</h5>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 explore-links">
+
+    <div class="col"><a href="/listings?location=North Goa">North Goa holiday rentals</a></div>
+    <div class="col"><a href="/listings?location=North Goa">North Goa monthly stays</a></div>
+    <div class="col"><a href="/listings?location=North Goa&pool=true">Holiday rentals with a pool in North Goa</a></div>
+    <div class="col"><a href="/listings?location=Goa&pool=true">Holiday rentals with a pool in Goa</a></div>
+    <div class="col"><a href="/listings?location=India&pool=true">Holiday rentals with a pool in India</a></div>
+
+  </div>
+</div>

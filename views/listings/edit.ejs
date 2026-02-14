@@ -1,0 +1,169 @@
+<% layout("/layout/boilerplate") %>
+<div class="row">
+    <div class="col-8 offset-2">
+
+<body>
+  <br>
+  <title>Edit Listing</title>
+
+
+
+<h2>Edit Listing</h2>
+<br>
+
+<form action="/listings/<%= listing._id %>?_method=PUT" method="POST">
+
+      <div class="mb-3">
+<label for="title" class="form-label">Title</label>
+  
+  <input
+    type="text" 
+    name="listing[title]" 
+    value="<%= listing.title %>" 
+    class="form-control"
+    required
+  >
+  
+  </div>
+  
+      <div class="mb-3">
+<label for="description" class="form-label">Description</label>
+
+ 
+  <textarea
+    type="text" 
+    name="listing[description]" 
+    value="<%= listing.description %>"
+    class="form-control"
+  >
+  </textarea>
+ </div>
+  
+      
+ <div class="mb-3">
+    <label for="image" class="form-label" class="form-label">image Link</label>
+    <input
+    name="listing[image]"
+    placeholder=" image URL/Link"
+    type="text"
+    class="form-control">
+  </div>
+
+      <div class="mb-3">
+<label for="price" class="form-label">Price</label>
+ 
+  <input 
+    type="number" 
+    name="listing[price]" 
+    value="<%= listing.price %>"
+    class="form-control"
+  >
+      </div>
+
+      
+      <div class="mb-3">
+<label for="location" class="form-label">Location</label>
+
+  
+  <input 
+    type="text" 
+    name="listing[location]" 
+    value="<%= listing.location %>"
+    class="form-control"
+  >
+  </div>
+  
+
+      <div class="mb-3">
+<label for="country" class="form-label">Country</label>
+ 
+  <input 
+    type="text" 
+    name="listing[country]" 
+    value="<%= listing.country %>"
+    class="form-control"
+  >
+</div>
+<br>
+<div class="col-8 offset-5">
+  <button class="btn btn-danger edit-btn">Edit</button>
+  </div>
+</form>
+
+  
+
+<br>
+<div class="  mb-3">
+
+<a href="/listings/<%= listing._id %>"
+  class="btn btn-dark">Back</a>
+
+</div>
+
+<footer class="footer mt-5 pt-5 border-top bg-light">
+  <div class="container">
+    <div class="row">
+
+      <!-- SUPPORT -->
+      <div class="col-md-4 mb-4">
+        <h6 class="fw-bold">Support</h6>
+        <ul class="list-unstyled footer-links">
+          <li><a href="#">Help Centre</a></li>
+          <li><a href="#">Get help with a safety issue</a></li>
+          <li><a href="#">AirCover</a></li>
+          <li><a href="#">Anti-discrimination</a></li>
+          <li><a href="#">Disability support</a></li>
+          <li><a href="#">Cancellation options</a></li>
+          <li><a href="#">Report neighbourhood concern</a></li>
+        </ul>
+      </div>
+
+      <!-- HOSTING -->
+      <div class="col-md-4 mb-4">
+        <h6 class="fw-bold">Hosting</h6>
+        <ul class="list-unstyled footer-links">
+          <li><a href="#">Airbnb your home</a></li>
+          <li><a href="#">Airbnb your experience</a></li>
+          <li><a href="#">Airbnb your service</a></li>
+          <li><a href="#">AirCover for Hosts</a></li>
+          <li><a href="#">Hosting resources</a></li>
+          <li><a href="#">Community forum</a></li>
+          <li><a href="#">Hosting responsibly</a></li>
+          <li><a href="#">Join a free hosting class</a></li>
+          <li><a href="#">Find a co-host</a></li>
+          <li><a href="#">Refer a host</a></li>
+        </ul>
+      </div>
+
+      <!-- AIRBNB -->
+      <div class="col-md-4 mb-4">
+        <h6 class="fw-bold">Airbnb</h6>
+        <ul class="list-unstyled footer-links">
+          <li><a href="#">2025 Summer Release</a></li>
+          <li><a href="#">Newsroom</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Investors</a></li>
+          <li><a href="#">Airbnb.org emergency stays</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <div class="d-flex justify-content-between flex-wrap pb-3 small text-muted">
+      <div>© 2026 Wanderlust, Inc.</div>
+      <div>
+        <a href="#" class="me-3">Privacy</a>
+        <a href="#" class="me-3">Terms</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body>
+</html>

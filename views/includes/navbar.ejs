@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-solid fa-compass"></i></a>    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+      
+        <a class="nav-link" href="/listings">Explore</a>
+        <a class="nav-link disabled" aria-disabled="true"></a>
+      </div>
+      <!-- 🔍 NAVBAR SEARCH -->
+<form action="/listings" method="GET" class="d-flex me-3" role="search">
+  <input 
+    class="form-control form-control-sm me-2" 
+    type="search" 
+    name="location" 
+    placeholder="Search location..."
+    aria-label="Search"
+  >
+  <button class="btn btn-outline-light btn-sm">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+</form>
+
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Airnb your home</a>
+      <a class="nav-link" href="/signup"><b>Signup</b></a> 
+        <a class="nav-link" href="/login"><b>Login</b></a> 
+        <a class="nav-link" href="/logout"><b>Logout</b></a>
+        </div>
+        
+
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,20 @@
+<% layout("/layout/boilerplate") %>
+
+<h2 class="mb-4 text-center">My Favourite Listings ❤️</h2>
+
+<div class="row">
+  <% if(favorites.length === 0){ %>
+    <p>No favourites yet.</p>
+  <% } %>
+
+  <% for(let listing of favorites){ %>
+    <div class="card col-3 m-3 listing-card">
+      <img src="<%= listing.image?.url || 'https://via.placeholder.com/300x200' %>" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title"><%= listing.title %></h5>
+        <p>₹ <%= listing.price.toLocaleString("en-IN") %></p>
+        <a href="/listings/<%= listing._id %>" class="btn btn-dark btn-sm">View</a>
+      </div>
+    </div>
+  <% } %>
+</div>

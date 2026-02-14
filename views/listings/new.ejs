@@ -1,0 +1,237 @@
+<% layout("/layout/boilerplate") %>
+
+<div class="row">
+  <div class="col-8 offset-2">
+    <br>
+
+    <h3>Create a new listing</h3>
+
+    <form action="/listings" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+
+      <!-- TITLE -->
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input
+          type="text"
+          name="listing[title]"
+          placeholder="Enter Title"
+          class="form-control"
+          required
+        >
+      </div>
+<div class="valid-feedback">Title looks good</div>
+      <!-- DESCRIPTION -->
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <input
+          type="text"
+          name="listing[description]"
+          placeholder="Enter Description"
+          class="form-control"
+          required
+        >
+      </div>
+      <div class="valid-feedback">Title looks good</div>
+
+      <!-- IMAGE -->
+      
+      
+      
+      
+      <div class="mb-3">
+        <label class="form-label"> Upload Image </label>
+        <input
+          type="file"
+          name="image"
+          
+          class="form-control"
+          required
+        />
+      </div>
+
+      <!-- PRICE -->
+      <div class="mb-3">
+        <label class="form-label">Price</label>
+        <input
+          type="number"
+          name="listing[price]"
+          placeholder="Enter Price"
+          class="form-control"
+        >
+      </div>
+
+      <!-- LOCATION -->
+      <div class="mb-3">
+        <label class="form-label">Location</label>
+        <input
+          type="text"
+          name="listing[location]"
+          placeholder="Enter Location"
+          class="form-control"
+        >
+      </div>
+
+      <!-- COUNTRY -->
+      <div class="mb-3">
+        <label class="form-label">Country</label>
+        <input
+          type="text"
+          name="listing[country]"
+          placeholder="Enter Country"
+          class="form-control"
+        >
+      </div>
+
+      <br>
+      <button class="btn btn-danger">Add</button>
+
+    </form>
+    <br><br><br>
+  </div>
+</div>
+<hr>
+<h5 class="mb-3">Choose Amenities</h5>
+
+<div class="row amenities-box">
+
+  <div class="col-md-3 col-6 mb-3">
+    <label class="amenity-card">
+      <input type="checkbox" name="listing[amenities]" value="Pool" hidden>
+      <i class="fa-solid fa-person-swimming"></i>
+      <span>Pool</span>
+    </label>
+  </div>
+
+  <div class="col-md-3 col-6 mb-3">
+    <label class="amenity-card">
+      <input type="checkbox" name="listing[amenities]" value="Free Parking" hidden>
+      <i class="fa-solid fa-square-parking"></i>
+      <span>Free Parking</span>
+    </label>
+  </div>
+
+  <div class="col-md-3 col-6 mb-3">
+    <label class="amenity-card">
+      <input type="checkbox" name="listing[amenities]" value="Washing Machine" hidden>
+      <i class="fa-solid fa-shirt"></i>
+      <span>Washing Machine</span>
+    </label>
+  </div>
+
+  <div class="col-md-3 col-6 mb-3">
+    <label class="amenity-card">
+      <input type="checkbox" name="listing[amenities]" value="AC" hidden>
+      <i class="fa-solid fa-snowflake"></i>
+      <span>AC</span>
+    </label>
+  </div>
+
+  <div class="col-md-3 col-6 mb-3">
+    <label class="amenity-card">
+      <input type="checkbox" name="listing[amenities]" value="Fireplace" hidden>
+      <i class="fa-solid fa-fire"></i>
+      <span>Fireplace</span>
+    </label>
+  </div>
+
+  <div class="col-md-3 col-6 mb-3">
+    <label class="amenity-card">
+      <input type="checkbox" name="listing[amenities]" value="TV" hidden>
+      <i class="fa-solid fa-tv"></i>
+      <span>TV</span>
+    </label>
+  </div>
+
+  <div class="col-md-3 col-6 mb-3">
+    <label class="amenity-card">
+      <input type="checkbox" name="listing[amenities]" value="Heating" hidden>
+      <i class="fa-solid fa-temperature-high"></i>
+      <span>Heating</span>
+    </label>
+  </div>
+
+  <div class="col-md-3 col-6 mb-3">
+    <label class="amenity-card">
+      <input type="checkbox" name="listing[amenities]" value="Barbeque" hidden>
+      <i class="fa-solid fa-drumstick-bite"></i>
+      <span>Barbeque</span>
+    </label>
+  </div>
+
+</div>
+<hr>
+<section class="container my-5">
+  <h3 class="mb-4 fw-bold">Your questions, answered</h3>
+
+  <div class="accordion" id="airbnbFAQ">
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q1">
+          What is Airbnb and how does it work?
+        </button>
+      </h2>
+      <div id="q1" class="accordion-collapse collapse" data-bs-parent="#airbnbFAQ">
+        <div class="accordion-body">
+          Airbnb is a platform where hosts list their homes and guests book stays. You can search, filter, and book unique places around the world.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q2">
+          How do I use search filters?
+        </button>
+      </h2>
+      <div id="q2" class="accordion-collapse collapse" data-bs-parent="#airbnbFAQ">
+        <div class="accordion-body">
+          Use filters like price, amenities, room type, and more to find the perfect stay that matches your needs.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q3">
+          Do I need to meet my Host?
+        </button>
+      </h2>
+      <div id="q3" class="accordion-collapse collapse" data-bs-parent="#airbnbFAQ">
+        <div class="accordion-body">
+          Not always. Many listings offer self check-in options so you can arrive at your convenience.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q4">
+          What if I need to cancel due to a problem with the listing or Host?
+        </button>
+      </h2>
+      <div id="q4" class="accordion-collapse collapse" data-bs-parent="#airbnbFAQ">
+        <div class="accordion-body">
+          You can cancel depending on the host’s cancellation policy. In case of issues, Airbnb support helps resolve problems.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q5">
+          Need more information?
+        </button>
+      </h2>
+      <div id="q5" class="accordion-collapse collapse" data-bs-parent="#airbnbFAQ">
+        <div class="accordion-body">
+          Visit our Help Center or contact support for further assistance.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+

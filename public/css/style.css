@@ -1,0 +1,277 @@
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.container{
+    flex: 1;
+}
+
+.navbar{
+    height:5rem ;
+    background-color: white;
+}
+.fa-compass{
+    font-size: 2rem;
+    color: rgb(255, 0, 0);
+
+}
+.nav-links{
+    color:#222222 !important
+}
+
+.f-info-links a {
+    text-decoration: none;
+    color: black;
+
+}
+.f-info-links a:hover{
+    text-decoration: underline;
+   
+}
+
+.f-info-links{
+    width: 100%;
+
+}
+
+.f-info-socials{
+    width: 100%;
+    font-size: 2rem;
+
+}
+
+.f-info-socials i{
+    font-size: 2rem;
+margin-right:  1rem;
+}
+
+.f-info{
+    text-align: center;
+    display: flex;
+    height: 8rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+.listing-card{
+    border: none !important;
+
+margin-bottom: 2rem;
+
+}
+.card-img-top{
+    border-radius:1rem !important;
+    width:100% !important;
+    object-fit: cover !important;
+}
+.card-body{
+    padding: 0 !important;
+
+}
+.card-text p{
+    font-weight:400;
+}
+
+.show-img{
+
+    height:30vh;
+}
+/* ===== PREMIUM NAVBAR STYLE ===== */
+
+
+
+/* Search box styling */
+form[role="search"] input {
+   border-radius: 20px;
+  padding: 5px 12px;
+  
+ 
+}
+/* ===== AIRBNB STYLE FILTER BAR ===== */
+
+/* ===== AIRBNB STYLE FILTER BAR ===== */
+
+.filters-wrapper {
+  position: sticky;
+  top: 72px;
+  z-index: 1000;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: nowrap !important;   /* FORCE single line */
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 28px;
+  padding: 0 24px;
+  align-items: center;
+  scrollbar-width: none;
+}
+
+.filters::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-item {
+  flex: 0 0 auto !important;   /* STOP vertical stacking */
+  text-align: center;
+  color: #666;
+  text-decoration: none;
+  min-width: 70px;
+  transition: all 0.3s ease;
+}
+
+.filter-item i {
+  font-size: 22px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.filter-item span {
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.filter-item:hover {
+  color: #ff385c;
+  transform: translateY(-3px);
+}
+#taxToggle {
+  width: 45px;
+  height: 22px;
+  cursor: pointer;
+   
+   
+
+}
+
+
+.form-check-input:checked {
+  background-color: #ff385c;
+  border-color: #ff385c;
+}
+/* Airbnb Style Filter Bar */
+.filter-panel {
+  border-radius: 50px;
+  background: #ffffff;
+}
+
+.filter-panel .form-select-sm,
+.filter-panel .form-control-sm {
+  border-radius: 30px;
+  min-width: 90px;
+}
+
+.filter-panel .form-check-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85rem;
+}
+/* Explore Section */
+.explore-links a {
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  display: block;
+  padding: 8px 0;
+  transition: all 0.2s ease;
+}
+
+.explore-links a span {
+  font-size: 0.85rem;
+  color: gray;
+  font-weight: 400;
+}
+
+.explore-links a:hover {
+  color: #ff385c;
+  transform: translateX(3px);
+}
+.dashboard-hero {
+  background: linear-gradient(135deg, #ff385c, #ff7a59);
+}
+
+.stat-card {
+  background: #fff;
+  transition: 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.listing-card {
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.listing-card:hover {
+  transform: scale(1.03);
+}
+
+.amenity-card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.amenity-card i {
+  font-size: 22px;
+  color: #555;
+}
+
+.amenity-card:hover {
+  border-color: black;
+  transform: scale(1.05);
+}
+
+.amenity-card input:checked + i,
+.amenity-card input:checked + i + span {
+  color: #ff385c;
+}
+.accordion-button {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #fff0f3;
+  color: #ff385c;
+}
+
+.accordion-body {
+  color: #555;
+  font-size: 15px;
+}
+.footer {
+  font-size: 14px;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #444;
+  transition: 0.2s;
+}
+
+.footer-links a:hover {
+  color: #ff385c;
+  padding-left: 3px;
+}
