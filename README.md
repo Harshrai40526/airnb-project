@@ -1,0 +1,1 @@
+Developed a full-stack web application inspired by Airbnb that allows users to list, explore, and book rental properties. The platform enables property owners to add listings with images, pricing, and descriptions, while users can browse accommodations, view details, and make bookings.
